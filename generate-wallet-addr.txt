@@ -1,0 +1,24 @@
+var email = "abc1234@gmail.com";
+var s = email;
+var pass = "1234";
+s += '|'+pass+'|';
+console.log(s);
+s += s.length+'|!@'+((pass.length*7)+email.length)*7;
+console.log(s);
+var regchars = (pass.match(/[a-z]+/g)) ? pass.match(/[a-z]+/g).length : 1;
+var regupchars = (pass.match(/[A-Z]+/g)) ? pass.match(/[A-Z]+/g).length : 1;
+var regnums = (pass.match(/[0-9]+/g)) ? pass.match(/[0-9]+/g).length : 1;
+s += ((regnums+regchars)+regupchars)*pass.length+'3571';
+console.log(s);
+s += (s+''+s);
+console.log(s);
+for(i=0;i<=50;i++){
+s = Crypto.SHA256(s);
+}
+
+coinjs.compressed = true;
+var keys = coinjs.newKeys(s);
+console.log(keys.address);
+console.log(keys.privkey);
+console.log(keys.pubkey);
+console.log(keys.wif);
