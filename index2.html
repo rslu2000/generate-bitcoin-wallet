@@ -1,0 +1,75 @@
+<html>
+<head>
+<script type="text/javascript" src="jsbn.js"></script>
+<script type="text/javascript" src="ripemd160.js"></script>
+<script type="text/javascript" src="ellipticcurve.js"></script>
+<script type="text/javascript" src="coin.js"></script>
+<script type="text/javascript" src="crypto-sha256.js"></script>
+</head>
+<body>
+
+<form class="form-signin" role="form" action="javascript:;">
+										
+<p>使用下列的表單以建立你自己的錢包地址，有了錢包地址就可以開始使用比特幣的轉帳服務</p>
+
+										
+<div class="alert alert-warning">
+											
+<b>注意：</b>: 使用不同的電子郵件與密碼組合可以產出不同的錢包地址!!! <br>
+請特別小心萬一你忘記了你所輸入的資訊，你將失去對你所產生的電子錢包的掌控權，而且它將不可回復！
+<br>請謹慎地記住你所輸入的email及密碼組合！ 
+										
+</div>
+<p></p>
+										
+<input id="openEmail" type="email" class="form-control" 
+placeholder="Email address" required autofocus>
+<p></p>										
+<input id="openPass" type="password" class="form-control" 
+placeholder="Password" required>
+<p></p>										
+<input id="openPassConfirm" type="password" class="form-control" 
+placeholder="Password confirm" required>
+<p></p>										
+<br>
+										
+<div id="openLoginStatus" class="alert alert-danger hidden"></div>										
+
+<button type="button" onclick="generateWallet()"> 產生錢包地址
+</button>        
+<p id="demo"></p><p id="demo"></p>
+</form>
+
+
+<script>
+   function generateWallet(){
+      if (document.getElementById("openPass").value==document.getElementById("openPassConfirm").value){
+	  var email = document.getElementById("openEmail").value;
+	  var pass = document.getElementById("openPass").value;
+	  var s = email;
+					s += '|'+pass+'|';
+					s += s.length+'|!@'+((pass.length*7)+email.length)*7;
+					var regchars = (pass.match(/[a-z]+/g)) ? pass.match(/[a-z]+/g).length : 1;
+					var regupchars = (pass.match(/[A-Z]+/g)) ? pass.match(/[A-Z]+/g).length : 1;
+					var regnums = (pass.match(/[0-9]+/g)) ? pass.match(/[0-9]+/g).length : 1;
+					s += ((regnums+regchars)+regupchars)*pass.length+'3571';
+					s += (s+''+s);
+
+					for(i=0;i<=50;i++) {
+						s = Crypto.SHA256(s);
+                        }
+
+					coinjs.compressed = true;
+					var keys = coinjs.newKeys(s);
+        document.write(keys.address);
+	    document.write(keys.privkey);
+	    document.write(keys.pubkey);
+		document.write(keys.wif);
+} else {
+					document.write("兩次輸入的密碼不一致!");
+				}
+}
+</script>
+
+</body>
+</html>
