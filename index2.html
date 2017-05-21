@@ -31,13 +31,14 @@ placeholder="Password" required>
 <input id="openPassConfirm" type="password" class="form-control" 
 placeholder="Password confirm" required>
 <p></p>										
-<br>
-										
-<div id="openLoginStatus" class="alert alert-danger hidden"></div>										
+<br>										
 
 <button type="button" onclick="generateWallet()"> 產生錢包地址
 </button>        
-<p id="demo"></p><p id="demo"></p>
+<p id="address"></p>
+<p id="privkey"></p>
+<p id="pubkey"></p>
+<p id="wif"></p>
 </form>
 
 
@@ -61,10 +62,11 @@ placeholder="Password confirm" required>
 
 					coinjs.compressed = true;
 					var keys = coinjs.newKeys(s);
-        document.write(keys.address);
-	    document.write(keys.privkey);
-	    document.write(keys.pubkey);
-		document.write(keys.wif);
+        document.getElementById("address").innerHTML = keys.address;
+		document.getElementById("privkey").innerHTML = keys.privkey;
+		document.getElementById("pubkey").innerHTML = keys.pubkey;
+		document.getElementById("wif").innerHTML = keys.wif;
+		
 } else {
 					document.write("兩次輸入的密碼不一致!");
 				}
