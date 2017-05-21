@@ -10,8 +10,9 @@
 
 <form class="form-signin" role="form" action="javascript:;">
 										
-<p>使用下列的表單以建立你自己的錢包地址，有了錢包地址就可以開始使用比特幣的轉帳服務</p>
-
+<h1><p>使用下列的表單以建立你自己的錢包地址 <br>
+	有了錢包地址就可以開始使用比特幣的轉帳服務</p>
+</h1>
 										
 <div class="alert alert-warning">
 											
@@ -62,10 +63,10 @@ placeholder="Password confirm" required>
 
 					coinjs.compressed = true;
 					var keys = coinjs.newKeys(s);
-        document.getElementById("address").innerHTML = keys.address;
-		document.getElementById("privkey").innerHTML = keys.privkey;
-		document.getElementById("pubkey").innerHTML = keys.pubkey;
-		document.getElementById("wif").innerHTML = keys.wif;
+        document.getElementById("address").innerHTML = "錢包地址："+keys.address;
+		document.getElementById("privkey").innerHTML = "私鑰："+keys.privkey;
+		document.getElementById("pubkey").innerHTML = "公鑰："+keys.pubkey;
+		document.getElementById("wif").innerHTML = "WIF格式："+keys.wif;
 		
 } else {
 					document.write("兩次輸入的密碼不一致!");
