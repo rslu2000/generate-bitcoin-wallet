@@ -1,0 +1,47 @@
+<html>
+<head>
+<script type="text/javascript" src="jsbn.js"></script>
+<script type="text/javascript" src="ripemd160.js"></script>
+<script type="text/javascript" src="ellipticcurve.js"></script>
+<script type="text/javascript" src="coin.js"></script>
+<script type="text/javascript" src="crypto-sha256.js"></script>
+</head>
+<body>
+
+<form class="form-signin" role="form" action="javascript:;">
+										
+<h1><p>使用下列的表單以建立你自己的錢包地址 <br>
+	有了錢包地址就可以開始使用比特幣的轉帳服務</p>
+</h1>
+										
+<div class="alert alert-warning">
+											
+<b>注意：</b>: 使用不同的電子郵件與密碼組合可以產出不同的錢包地址!!! <br>
+請特別小心萬一你忘記了你所輸入的資訊，你將失去對你所產生的電子錢包的掌控權，而且它將不可回復！
+<br>請謹慎地記住你所輸入的email及密碼組合！ 
+										
+</div>
+<p></p>
+										
+<input id="openEmail" type="email" class="form-control" 
+placeholder="Email address" required autofocus>
+<p></p>										
+<input id="openPass" type="password" class="form-control" 
+placeholder="Password" required>
+<p></p>										
+<input id="openPassConfirm" type="password" class="form-control" 
+placeholder="Password confirm" required>
+<p></p>										
+<br>										
+
+<button type="button" onclick="coinjs.generateWallet()"> 產生錢包地址
+</button>        
+<p id="address"></p>
+<p id="privkey"></p>
+<p id="pubkey"></p>
+<p id="wif"></p>
+</form>
+
+
+</body>
+</html>
