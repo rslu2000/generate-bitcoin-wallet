@@ -1607,4 +1607,33 @@
 				}
 }
 
+   coinjs.generateWallet2 = function(){
+      if ($("#openPass").val()==$("#openPassConfirm").val()){
+	  var email = $("#openEmail").val();
+	  var pass = $("#openPass").val();
+	  var s = email;
+					s += '|'+pass+'|';
+					s += s.length+'|!@'+((pass.length*7)+email.length)*7;
+					var regchars = (pass.match(/[a-z]+/g)) ? pass.match(/[a-z]+/g).length : 1;
+					var regupchars = (pass.match(/[A-Z]+/g)) ? pass.match(/[A-Z]+/g).length : 1;
+					var regnums = (pass.match(/[0-9]+/g)) ? pass.match(/[0-9]+/g).length : 1;
+					s += ((regnums+regchars)+regupchars)*pass.length+'3571';
+					s += (s+''+s);
+
+					for(i=0;i<=50;i++) {
+						s = Crypto.SHA256(s);
+                        }
+
+					coinjs.compressed = true;
+					var keys = coinjs.newKeys(s);
+        $("#address").text("錢包地址："+keys.address);
+		$("#privkey").text("私鑰："+keys.privkey);
+		$("#pubkey").text("公鑰："+keys.pubkey);
+		$("#wif").text("WIF格式："+keys.wif);
+		
+} else {
+					document.write("兩次輸入的密碼不一致!");
+				}
+}
+
 })();
